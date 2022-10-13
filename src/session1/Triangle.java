@@ -3,6 +3,10 @@ package session1;
 public class Triangle {
     int a, b, c;
 
+    public Triangle() {
+        System.out.println("Construcctor");
+    }
+
     public int getA() {
         return a;
     }
