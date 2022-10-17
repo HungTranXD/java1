@@ -1,9 +1,22 @@
 package session2;
 
+import java.util.ArrayList;
+
 public class FptStudent {
-    String code;
-    String name;
-    String tel;
+    protected String code;
+    protected String name;
+    protected String tel;
+    ArrayList<String> classes = new ArrayList<>();
+
+
+    private int mark;
+    public int getMark() {
+        return mark;
+    }
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
     public FptStudent() {
         System.out.println("Fpt Student");
     }
