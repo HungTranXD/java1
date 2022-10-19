@@ -4,40 +4,36 @@ import java.time.LocalDate;
 
 public class ElectricityBill {
     //Ma khach hang
-    private int id;
+    private String code;
     //Ho ten
     private String name;
     //Ngay ra hoa don
     private int day;
     private int month;
     private int year;
-    //Doi tuong khach hang (sinh hoat, kinh doanh, san suat)
-    private String cusType;
-    //So luong (so KW tieu thu)
+    //Lượng điện tiêu thụ
     private int electricityConsumed;
 
     //CONSTRUCTOR
     public ElectricityBill() {
     }
 
-    public ElectricityBill(int id, String name, int day, int month, int year, String cusType, int electricityConsumed) {
-        this.id = id;
+    public ElectricityBill(String code, String name, int day, int month, int year, int electricityConsumed) {
+        this.code = code;
         this.name = name;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.cusType = cusType;
         this.electricityConsumed = electricityConsumed;
     }
 
-
     //GETTER AND SETTER METHODS
-    public int getId() {
-        return id;
+    public String getCode() {
+        return code;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -72,14 +68,6 @@ public class ElectricityBill {
         this.year = year;
     }
 
-    public String getCusType() {
-        return cusType;
-    }
-
-    public void setCusType(String cusType) {
-        this.cusType = cusType;
-    }
-
     public int getElectricityConsumed() {
         return electricityConsumed;
     }
@@ -92,9 +80,9 @@ public class ElectricityBill {
     public double paymentAmount() {
         if(getElectricityConsumed() < 50) {
             return (double) getElectricityConsumed() * 1000;
-        } else if (getElectricityConsumed() >=50 && getElectricityConsumed() < 100) {
+        } else if (getElectricityConsumed() < 100) {
             return (double) 50 * 1000 + (getElectricityConsumed() - 50) * 1200;
-        } else if (getElectricityConsumed() >= 100 && getElectricityConsumed() < 200) {
+        } else if (getElectricityConsumed() < 200) {
             return (double) 50 * 1000 + 50 * 1200 + (getElectricityConsumed() - 100) * 1500;
         } else {
             return (double) 50 * 1000 + 50 * 1200 + 100 * 1500 + (getElectricityConsumed() - 200) * 2000;
