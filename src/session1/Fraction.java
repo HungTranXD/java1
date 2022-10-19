@@ -105,7 +105,7 @@ public class Fraction {
     public Fraction multiply(Fraction b)
     {
         Fraction result = new Fraction();
-        result.numerator = this.numerator + b.numerator;
+        result.numerator = this.numerator * b.numerator;
         result.denominator = this.denominator * b.denominator;
         result.reduce();
         return result;

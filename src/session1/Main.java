@@ -32,8 +32,10 @@ public class Main {
         System.out.println("Nhap mau so:");
         f1.setDenominator(sc.nextInt());
         f1.print();
-        f1.reduce();
-        f1.inverse();
+//        f1.reduce();
+//        f1.print();
+//        f1.inverse();
+//        f1.print();
 
         Fraction f2 = new Fraction();
         System.out.println("Nhap tu so:");
@@ -41,9 +43,13 @@ public class Main {
         System.out.println("Nhap mau so:");
         f2.setDenominator(sc.nextInt());
 
-        System.out.println("Ket qua phep cong: " + f1.add(f2));
-        System.out.println("Ket qua phep tru: " + f1.subtract(f2));
-        System.out.println("Ket qua phep nhan: " + f1.multiply(f2));
-        System.out.println("Ket qua phep chia: " + f1.divide(f2));
+        System.out.println("Ket qua phep cong: ");
+        f1.add(f2).print();
+        System.out.println("Ket qua phep tru: ");
+        f1.subtract(f2).print();
+        System.out.println("Ket qua phep nhan: ");
+        f1.multiply(f2).print();
+        System.out.println("Ket qua phep chia: ");
+        f1.divide(f2).print();
     }
 }
