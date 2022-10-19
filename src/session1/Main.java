@@ -31,9 +31,9 @@ public class Main {
         f1.setNumerator(sc.nextInt());
         System.out.println("Nhap mau so:");
         f1.setDenominator(sc.nextInt());
-        System.out.println("Phan so vua nhap: " + f1.toString());
-        System.out.println("Rut gon:" + f1.reduce());
-        System.out.println("Nghich dao: " + f1.inverse());
+        f1.print();
+        f1.reduce();
+        f1.inverse();
 
         Fraction f2 = new Fraction();
         System.out.println("Nhap tu so:");
