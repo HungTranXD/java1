@@ -9,10 +9,17 @@ public class PhoneNumber {
     public PhoneNumber() {
     }
 
-
     public PhoneNumber(String name, String phone) {
         this.name = name;
         tel = new ArrayList<>();
         tel.add(phone);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getTel() {
+        return tel;
     }
 }

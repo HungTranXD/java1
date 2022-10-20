@@ -5,5 +5,17 @@ public class Main {
         Vietnamese vn1 = new Vietnamese();
         vn1.eat();
         vn1.run();
+
+        Human h = new Human() {
+            @Override
+            public void eat() {
+
+            }
+
+            @Override
+            public void run() {
+
+            }
+        };
     }
 }

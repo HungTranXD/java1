@@ -16,15 +16,15 @@ public class Main {
         pb.insertPhone("Sherlock Home","55556666");
         pb.insertPhone("Sherlock Home","55557777");
 
-        pb.removePhone("Hardy Watson");
-
-        pb.updatePhone("John Smith","111112222", "0000000000");
-
+//        pb.removePhone("Hardy Watson");
+//
+//        pb.updatePhone("John Smith","111112222", "0000000000");
+//
         pb.sort();
 
         ArrayList<PhoneNumber> phoneList = pb.getPhoneList();
         for(PhoneNumber p: phoneList) {
-            System.out.println(p.name + "--" + p.tel);
+            System.out.println(p.getName() + "--" + p.getTel());
         }
 
         System.out.println("\nKet qua tim \"John Smith\"");
