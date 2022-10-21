@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:controller="assignment5.InputFormController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="248.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông tin sinh viên" wrappingWidth="103.13671875" />
+      <TextField fx:id="txtName" layoutX="51.0" layoutY="56.0" text="Tên sinh viên" />
+      <TextField fx:id="txtEmail" layoutX="51.0" layoutY="110.0" text="Email" />
+      <TextField fx:id="txtAddress" layoutX="51.0" layoutY="166.0" text="Địa chỉ" />
+      <TextField fx:id="txtAge" layoutX="51.0" layoutY="222.0" text="Tuổi" />
+      <TextField fx:id="txtTel" layoutX="51.0" layoutY="281.0" text="Số điện thoại" />
+      <Button onAction="#submit" layoutX="274.0" layoutY="328.0" mnemonicParsing="false" text="Button" />
+      <Text fx:id="strName" layoutX="352.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sinh viên" />
+      <Text fx:id="strEmail" layoutX="352.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <Text fx:id="strAddress" layoutX="352.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ" />
+      <Text fx:id="strAge" layoutX="352.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tuổi" />
+      <Text fx:id="strTel" layoutX="352.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại" />
+   </children>
+</Pane>
