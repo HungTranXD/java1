@@ -1,6 +1,10 @@
 package assignment5;
 
+import javafx.Contact;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -10,11 +14,9 @@ public class InputFormController {
     public TextField txtAddress;
     public TextField txtAge;
     public TextField txtTel;
-    public Text strName;
-    public Text strEmail;
-    public Text strAddress;
-    public Text strAge;
-    public Text strTel;
+    public ListView<StudentInfo> listView;
+    
+    private StudentList list1 = new StudentList();
 
     public void submit(ActionEvent actionEvent) {
         String name = txtName.getText();
@@ -23,10 +25,11 @@ public class InputFormController {
         int age = Integer.parseInt(txtAge.getText());
         String tel = txtTel.getText();
 
-        strName.setText(name);
-        strEmail.setText(email);
-        strAddress.setText(address);
-        strAge.setText(Integer.toString(age));
-        strTel.setText(tel);
+        list1.addStudent(name, email, address, age, tel);
+        print();
+    }
+    public void print() {
+        listView.setItems(list1.getList());
+        listView.refresh();
     }
 }
