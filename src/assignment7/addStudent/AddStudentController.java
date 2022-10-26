@@ -22,7 +22,7 @@ public class AddStudentController {
         Main.rootStage.setScene(sc);
     }
 
-    public void addStudent(String name, String email, Integer mark) throws Exception{
+    private void addStudent(String name, String email, Integer mark) throws Exception{
         for (assignment7.Student s: StudentListController.studentList) {
             if (s.getName().equals(name)) {
                 throw new Exception("Name already exists");
