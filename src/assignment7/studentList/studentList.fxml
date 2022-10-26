@@ -6,18 +6,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane fx:controller="assignment7.studentList.StudentListController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment7.studentList.StudentListController">
    <children>
       <Text layoutX="143.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENT LIST">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button onAction="#goToAddPage" layoutX="304.0" layoutY="42.0" mnemonicParsing="false" text="Add student" />
-      <ListView onMouseClicked="#edit" fx:id="studentLv" layoutX="14.0" layoutY="80.0" prefHeight="501.0" prefWidth="372.0" />
-      <Button onAction="#sortByName" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" text="Sort by name" />
-      <Button onAction="#sortByMark" layoutX="108.0" layoutY="42.0" mnemonicParsing="false" text="Sort by mark" />
+      <Button layoutX="304.0" layoutY="42.0" mnemonicParsing="false" onAction="#goToAddPage" text="Add student" />
+      <ListView fx:id="studentLv" layoutX="14.0" layoutY="80.0" onMouseClicked="#edit" prefHeight="485.0" prefWidth="372.0" />
+      <Button layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#sortByName" text="Sort by name" />
+      <Button layoutX="108.0" layoutY="42.0" mnemonicParsing="false" onAction="#sortByMark" text="Sort by mark" />
+      <Text layoutX="128.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Click on student to edit)" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
