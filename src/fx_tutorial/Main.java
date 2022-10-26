@@ -1,11 +1,13 @@
 package fx_tutorial;
 
+import com.sun.crypto.provider.HmacMD5KeyGenerator;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -14,6 +16,17 @@ public class Main extends Application {
 
     Stage window;
     Scene scene1, scene2;
+    Button button;
+
+    ComboBox<String> comboBox;
+
+    ListView<String> listView;
+
+    TreeView<String> tree;
+
+    TableView<Product> table;
+    TextField nameInput, priceInput, quantityInput;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -136,36 +149,255 @@ public class Main extends Application {
         /* ------------------------------------------------- */
         /* ------------------- Grid pane ------------------- */
         /* ------------------------------------------------- */
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(8);
-        grid.setHgap(10);
+//        GridPane grid = new GridPane();
+//        grid.setPadding(new Insets(10, 10, 10, 10));
+//        grid.setVgap(8);
+//        grid.setHgap(10);
+//
+//        //Name label
+//        Label nameLabel = new Label("Username:");
+//        GridPane.setConstraints(nameLabel, 0,0);
+//
+//        //Name input
+//        TextField nameInput = new TextField("Bucky");
+//        GridPane.setConstraints(nameInput,1,0);
+//
+//        //Password label
+//        Label passLabel = new Label("Password:");
+//        GridPane.setConstraints(passLabel, 0,1);
+//
+//        //Password input
+//        TextField passInput = new TextField();
+//        passInput.setPromptText("password");
+//        GridPane.setConstraints(passInput, 1, 1);
+//
+//        Button loginButton = new Button("Log in");
+//        GridPane.setConstraints(loginButton, 1, 2);
+//
+//        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
+//
+//        Scene scene = new Scene(grid, 300, 200);
+//        window.setScene(scene);
+//        window.show();
 
-        //Name label
-        Label nameLabel = new Label("Username:");
-        GridPane.setConstraints(nameLabel, 0,0);
+
+
+        /* ------------------------------------------------- */
+        /* ---------- Extract and validate input ----------- */
+        /* ------------------------------------------------- */
+//        //Form
+//        TextField nameInput = new TextField();
+//        Button button = new Button("Click me");
+//        button.setOnAction(event -> isInt(nameInput, nameInput.getText()));
+//
+//        //Layout
+//        VBox layout = new VBox(10);
+//        layout.setPadding(new Insets(20, 20, 20, 20));
+//        layout.getChildren().addAll(nameInput, button);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+
+        /* ------------------------------------------------- */
+        /* ------------------- Check box ------------------- */
+        /* ------------------------------------------------- */
+//        //Check box
+//        CheckBox box1 = new CheckBox("Bacon");
+//        CheckBox box2 = new CheckBox("Tuna");
+//        box2.setSelected(true); //check by default
+//
+//        //Button
+//        Button button = new Button("Order now!");
+//        button.setOnAction(event -> handleOptions(box1, box2));
+//
+//        //Layout
+//        VBox layout = new VBox(10);
+//        layout.setPadding(new Insets(20, 20, 20, 20));
+//        layout.getChildren().addAll(box1, box2, button);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+
+        /* ------------------------------------------------- */
+        /* ----------- Check box (drop down menu) ---------- */
+        /* ------------------------------------------------- */
+//        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+//
+//        //getItems return the ObservableList which you can add item to
+//        choiceBox.getItems().add("Apple");
+//        choiceBox.getItems().add("Bananas");
+//        choiceBox.getItems().addAll("Bacon", "Ham", "Meatballs");
+//
+//        //Set the default value
+//        choiceBox.setValue("Apple");
+//
+//        //Button
+//        Button button = new Button("Order now!");
+//        button.setOnAction(event -> getChoice(choiceBox));
+//
+//        //Listen for selection changes
+//        choiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println(oldValue + "->" + newValue));
+//
+//        //Layout
+//        VBox layout = new VBox(10);
+//        layout.setPadding(new Insets(20, 20, 20, 20));
+//        layout.getChildren().addAll(choiceBox, button);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+        /* ------------------------------------------------- */
+        /* -- ComboBox (dont need listener like CheckBox) -- */
+        /* ------------------------------------------------- */
+//        comboBox = new ComboBox<>();
+//        comboBox.getItems().addAll(
+//                "Good Will Hunting",
+//                "St. Vincent",
+//                "Backhat"
+//        );
+//        comboBox.setPromptText("Your favorite movie:");
+//        //ComboBox emits it's own event
+//        comboBox.setOnAction(event -> System.out.println("You are selecting: " + comboBox.getValue()));
+//        //User can type their own value
+//        comboBox.setEditable(true);
+//
+//        Button button = new Button("Order now!");
+//        button.setOnAction(event -> printMovie());
+//
+//        VBox layout = new VBox(10);
+//        layout.setPadding(new Insets(20, 20, 20, 20));
+//        layout.getChildren().addAll(comboBox, button);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+
+        /* ------------------------------------------------- */
+        /* -------------------- ListView ------------------- */
+        /* ------------------------------------------------- */
+//        listView = new ListView<>();
+//        listView.getItems().addAll("Iron man", "Titanic", "Contact");
+//        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//
+//        button = new Button("Submit");
+//        button.setOnAction(event -> buttonClicked());
+//
+//        VBox layout = new VBox(10);
+//        layout.setPadding(new Insets(20, 20, 20, 20));
+//        layout.getChildren().addAll(listView, button);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+
+        /* ------------------------------------------------- */
+        /* -------------------- TreeView ------------------- */
+        /* ------------------------------------------------- */
+//        TreeItem<String> root, bucky, megan;
+//
+//        //Root
+//        root = new TreeItem<>();
+//        root.setExpanded(true);//everything expanded when program start
+//
+//        //Bucky
+//        bucky = makeBranch("Bucky", root);
+//        makeBranch("thenewboston", bucky);
+//        makeBranch("YouTube", bucky);
+//        makeBranch("Chicken", bucky);
+//
+//        //Megan
+//        megan = makeBranch("Megan", root);
+//        makeBranch("Glitter", megan);
+//        makeBranch("Makeup", megan);
+//
+//        //Create tree
+//        tree = new TreeView<>(root);
+//        tree.setShowRoot(false);//hide root
+//        //add listener
+//        tree.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+//            if (newValue != null)
+//                System.out.println(newValue.getValue());
+//        });
+//
+//        StackPane layout = new StackPane();
+//        layout.getChildren().add(tree);
+//
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
+
+
+
+        /* ------------------------------------------------- */
+        /* ------------------- TableView ------------------- */
+        /* ------------------------------------------------- */
+        //Name column
+        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        //Price column
+        TableColumn<Product, Double> priceColumn = new TableColumn<>("Price");
+        priceColumn.setMinWidth(100);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Quantity column
+        TableColumn<Product, Integer> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setMinWidth(100);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         //Name input
-        TextField nameInput = new TextField("Bucky");
-        GridPane.setConstraints(nameInput,1,0);
+        nameInput = new TextField();
+        nameInput.setPromptText("Name");
+        nameInput.setMinWidth(100);
 
-        //Password label
-        Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel, 0,1);
+        //Price input
+        priceInput = new TextField();
+        priceInput.setPromptText("Price");
 
-        //Password input
-        TextField passInput = new TextField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput, 1, 1);
+        //Quantity input
+        quantityInput = new TextField();
+        quantityInput.setPromptText("Quantity");
 
-        Button loginButton = new Button("Log in");
-        GridPane.setConstraints(loginButton, 1, 2);
+        //Button
+        Button addButton = new Button("Add");
+        addButton.setOnAction(event -> addButtonClicked());
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(event -> deleteButtonClicked());
 
-        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
+        HBox hBox = new HBox();
+        hBox.setPadding(new Insets(10, 10, 10, 10));
+        hBox.setSpacing(10);
+        hBox.getChildren().addAll(nameInput, priceInput, quantityInput, addButton, deleteButton);
+        
 
-        Scene scene = new Scene(grid, 300, 200);
+        table = new TableView<>();
+        table.setItems(getProduct());
+        table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(table, hBox);
+        Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
+
+
+
+
+
+
 
     }
 
@@ -176,4 +408,114 @@ public class Main extends Application {
             window.close();
         }
     }
+
+    /* ------------------------------------------------- */
+    /* ---------- Extract and validate input ----------- */
+    /* ------------------------------------------------- */
+    private boolean isInt(TextField input, String massage) {
+        try {
+            int age = Integer.parseInt(input.getText());
+            System.out.println("User is: " + age);
+            input.setStyle("-fx-background-color: rgba(0,255,111,0.5);");
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + massage + " is not a number");
+            input.setStyle("-fx-background-color: rgba(255,0,0,0.5);");
+            return false;
+        }
+    }
+
+
+    /* ------------------------------------------------- */
+    /* ------------------- Check box ------------------- */
+    /* ------------------------------------------------- */
+    private void handleOptions(CheckBox box1, CheckBox box2) {
+        String massage = "User order:\n";
+
+        if(box1.isSelected())
+            massage += "Bacon\n";
+        if(box2.isSelected())
+            massage += "Tuna\n";
+
+        System.out.println(massage);
+    }
+
+
+    /* ------------------------------------------------- */
+    /* ----------- Check box (drop down menu ----------- */
+    /* ------------------------------------------------- */
+    private void getChoice(ChoiceBox<String> choiceBox) {
+        String food = choiceBox.getValue();
+        System.out.println(food);
+    }
+
+
+    /* ------------------------------------------------- */
+    /* -- ComboBox (dont need listener like CheckBox) -- */
+    /* ------------------------------------------------- */
+    private void printMovie() {
+        System.out.println(comboBox.getValue());
+    }
+
+
+    /* ------------------------------------------------- */
+    /* -------------------- ListView ------------------- */
+    /* ------------------------------------------------- */
+    private void buttonClicked() {
+        String massage = "";
+        ObservableList<String> movies;
+        movies = listView.getSelectionModel().getSelectedItems();
+
+        for(String m: movies) {
+            massage += m + "\n";
+        }
+
+        System.out.println(massage);
+    }
+
+
+    /* ------------------------------------------------- */
+    /* -------------------- TreeView ------------------- */
+    /* ------------------------------------------------- */
+    //Create branch
+    public TreeItem<String> makeBranch(String title, TreeItem<String> parent) {
+        TreeItem<String> item = new TreeItem<>(title);
+        item.setExpanded(true);
+        parent.getChildren().add(item);
+        return item;
+    }
+
+
+    /* ------------------------------------------------- */
+    /* ------------------- TableView ------------------- */
+    /* ------------------------------------------------- */
+    //Get all products (for example connect to API to get data)
+    public ObservableList<Product> getProduct() {
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        products.add(new Product("Laptop", 900.00, 20));
+        products.add(new Product("Ball", 2.49, 198));
+        products.add(new Product("Toilet", 99.00, 74));
+        products.add(new Product("DVD", 19.99, 12));
+        products.add(new Product("Corn", 1.49, 856));
+        return products;
+    }
+
+    private void addButtonClicked() {
+        Product product = new Product();
+        product.setName(nameInput.getText());
+        product.setPrice(Double.parseDouble(priceInput.getText()));
+        product.setQuantity(Integer.parseInt(quantityInput.getText()));
+        table.getItems().add(product);
+        nameInput.clear();
+        priceInput.clear();
+        quantityInput.clear();
+    }
+
+    private void deleteButtonClicked() {
+        ObservableList<Product> productSelected, allProducts;
+        allProducts = table.getItems();
+        productSelected = table.getSelectionModel().getSelectedItems();
+        productSelected.forEach(allProducts::remove);
+    }
+
 }
