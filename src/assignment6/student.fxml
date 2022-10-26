@@ -15,7 +15,7 @@
       <TextField fx:id="txtName" layoutX="84.0" layoutY="52.0" promptText="Tên" />
       <TextField fx:id="txtEmail" layoutX="84.0" layoutY="98.0" promptText="Email" />
       <TextField fx:id="txtMark" layoutX="84.0" layoutY="151.0" promptText="Điểm thi" />
-      <Button layoutX="131.0" layoutY="200.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <Button layoutX="84.0" layoutY="200.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: red;" text="Submit" textFill="WHITE" />
       <ListView fx:id="listView" layoutX="300.0" layoutY="52.0" prefHeight="265.0" prefWidth="277.0" />
       <Button layoutX="336.0" layoutY="335.0" mnemonicParsing="false" onAction="#sortByName" text="Sort by name" />
       <Button layoutX="463.0" layoutY="335.0" mnemonicParsing="false" onAction="#sortByMark" text="Sort by mark" />

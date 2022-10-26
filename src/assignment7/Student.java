@@ -1,4 +1,4 @@
-package assignment6;
+package assignment7;
 
 public class Student {
     private String name;
