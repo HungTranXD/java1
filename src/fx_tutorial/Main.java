@@ -149,36 +149,44 @@ public class Main extends Application {
         /* ------------------------------------------------- */
         /* ------------------- Grid pane ------------------- */
         /* ------------------------------------------------- */
-//        GridPane grid = new GridPane();
-//        grid.setPadding(new Insets(10, 10, 10, 10));
-//        grid.setVgap(8);
-//        grid.setHgap(10);
-//
-//        //Name label
-//        Label nameLabel = new Label("Username:");
-//        GridPane.setConstraints(nameLabel, 0,0);
-//
-//        //Name input
-//        TextField nameInput = new TextField("Bucky");
-//        GridPane.setConstraints(nameInput,1,0);
-//
-//        //Password label
-//        Label passLabel = new Label("Password:");
-//        GridPane.setConstraints(passLabel, 0,1);
-//
-//        //Password input
-//        TextField passInput = new TextField();
-//        passInput.setPromptText("password");
-//        GridPane.setConstraints(passInput, 1, 1);
-//
-//        Button loginButton = new Button("Log in");
-//        GridPane.setConstraints(loginButton, 1, 2);
-//
-//        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
-//
-//        Scene scene = new Scene(grid, 300, 200);
-//        window.setScene(scene);
-//        window.show();
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+
+        //Name label
+        Label nameLabel = new Label("Username:");
+        nameLabel.setId("bold-label");
+        GridPane.setConstraints(nameLabel, 0,0);
+
+        //Name input
+        TextField nameInput = new TextField("Bucky");
+        GridPane.setConstraints(nameInput,1,0);
+
+        //Password label
+        Label passLabel = new Label("Password:");
+        GridPane.setConstraints(passLabel, 0,1);
+
+        //Password input
+        TextField passInput = new TextField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput, 1, 1);
+
+        //Login button
+        Button loginButton = new Button("Log in");
+        GridPane.setConstraints(loginButton, 1, 2);
+
+        //Sign up button
+        Button signupButton = new Button("Sign up");
+        signupButton.getStyleClass().add("button-blue");
+        GridPane.setConstraints(signupButton,1,3);
+
+        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signupButton);
+
+        Scene scene = new Scene(grid, 300, 200);
+        scene.getStylesheets().add("viper.css");
+        window.setScene(scene);
+        window.show();
 
 
 
@@ -343,57 +351,122 @@ public class Main extends Application {
         /* ------------------------------------------------- */
         /* ------------------- TableView ------------------- */
         /* ------------------------------------------------- */
-        //Name column
-        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setMinWidth(200);
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//        //Name column
+//        TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
+//        nameColumn.setMinWidth(200);
+//        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//
+//        //Price column
+//        TableColumn<Product, Double> priceColumn = new TableColumn<>("Price");
+//        priceColumn.setMinWidth(100);
+//        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+//
+//        //Quantity column
+//        TableColumn<Product, Integer> quantityColumn = new TableColumn<>("Quantity");
+//        quantityColumn.setMinWidth(100);
+//        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+//
+//        //Name input
+//        nameInput = new TextField();
+//        nameInput.setPromptText("Name");
+//        nameInput.setMinWidth(100);
+//
+//        //Price input
+//        priceInput = new TextField();
+//        priceInput.setPromptText("Price");
+//
+//        //Quantity input
+//        quantityInput = new TextField();
+//        quantityInput.setPromptText("Quantity");
+//
+//        //Button
+//        Button addButton = new Button("Add");
+//        addButton.setOnAction(event -> addButtonClicked());
+//        Button deleteButton = new Button("Delete");
+//        deleteButton.setOnAction(event -> deleteButtonClicked());
+//
+//        HBox hBox = new HBox();
+//        hBox.setPadding(new Insets(10, 10, 10, 10));
+//        hBox.setSpacing(10);
+//        hBox.getChildren().addAll(nameInput, priceInput, quantityInput, addButton, deleteButton);
+//
+//
+//        table = new TableView<>();
+//        table.setItems(getProduct());
+//        table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
+//
+//        VBox vBox = new VBox();
+//        vBox.getChildren().addAll(table, hBox);
+//        Scene scene = new Scene(vBox);
+//        window.setScene(scene);
+//        window.show();
 
-        //Price column
-        TableColumn<Product, Double> priceColumn = new TableColumn<>("Price");
-        priceColumn.setMinWidth(100);
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        //Quantity column
-        TableColumn<Product, Integer> quantityColumn = new TableColumn<>("Quantity");
-        quantityColumn.setMinWidth(100);
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-        //Name input
-        nameInput = new TextField();
-        nameInput.setPromptText("Name");
-        nameInput.setMinWidth(100);
-
-        //Price input
-        priceInput = new TextField();
-        priceInput.setPromptText("Price");
-
-        //Quantity input
-        quantityInput = new TextField();
-        quantityInput.setPromptText("Quantity");
-
-        //Button
-        Button addButton = new Button("Add");
-        addButton.setOnAction(event -> addButtonClicked());
-        Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(event -> deleteButtonClicked());
-
-        HBox hBox = new HBox();
-        hBox.setPadding(new Insets(10, 10, 10, 10));
-        hBox.setSpacing(10);
-        hBox.getChildren().addAll(nameInput, priceInput, quantityInput, addButton, deleteButton);
-        
-
-        table = new TableView<>();
-        table.setItems(getProduct());
-        table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(table, hBox);
-        Scene scene = new Scene(vBox);
-        window.setScene(scene);
-        window.show();
 
 
+        /* ------------------------------------------------- */
+        /* ---------------------- Menus -------------------- */
+        /* ------------------------------------------------- */
+//        //File menu
+//        Menu fileMenu = new Menu("_File"); //Put underscore treat it as shortcut
+//
+//        //Menu items
+//        MenuItem newFile = new MenuItem("New...");
+//        newFile.setOnAction(event -> System.out.println("Create a new file..."));
+//        fileMenu.getItems().add(newFile);
+//
+//        fileMenu.getItems().add(new MenuItem("Open..."));
+//        fileMenu.getItems().add(new MenuItem("Save..."));
+//        fileMenu.getItems().add(new SeparatorMenuItem());
+//        fileMenu.getItems().add(new MenuItem("Setting..."));
+//        fileMenu.getItems().add(new SeparatorMenuItem());
+//        fileMenu.getItems().add(new MenuItem("Exit..."));
+//
+//        //Edit menu
+//        Menu editMenu = new Menu("_Edit");
+//        editMenu.getItems().add(new MenuItem("Cut"));
+//        editMenu.getItems().add(new MenuItem("Copy"));
+//
+//        MenuItem paste = new MenuItem("Paste");
+//        newFile.setOnAction(event -> System.out.println("Pasting..."));
+//        editMenu.getItems().add(paste);
+//        paste.setDisable(true); //Disable menu items
+//
+//        //Help menu (CHECK MENU ITEMS)
+//        Menu helpMenu = new Menu("Help");
+//        CheckMenuItem showLines = new CheckMenuItem("Show Line Numbers");
+//        showLines.setOnAction(event -> {
+//            if (showLines.isSelected())
+//                System.out.println("Program will now display line numbers");
+//            else
+//                System.out.println("Hiding line numbers");
+//        });
+//        CheckMenuItem autoSave = new CheckMenuItem("Enable Autosave");
+//        autoSave.setSelected(true);
+//        helpMenu.getItems().addAll(showLines, autoSave);
+//
+//        //Difficulty (RADIO MENU ITEMS)
+//        Menu difficultyMenu = new Menu("Difficulty");
+//        ToggleGroup difficultyToggle = new ToggleGroup();
+//
+//        RadioMenuItem easy = new RadioMenuItem("Easy");
+//        RadioMenuItem medium = new RadioMenuItem("Medium");
+//        RadioMenuItem hard = new RadioMenuItem("Hard");
+//
+//        easy.setToggleGroup(difficultyToggle);
+//        medium.setToggleGroup(difficultyToggle);
+//        hard.setToggleGroup(difficultyToggle);
+//
+//        difficultyMenu.getItems().addAll(easy, medium, hard);
+//
+//        //Main menu bar
+//        MenuBar menuBar = new MenuBar();
+//        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu, difficultyMenu);
+//
+//        BorderPane layout = new BorderPane();
+//        layout.setTop(menuBar);
+//        Scene scene = new Scene(layout, 400, 300);
+//        window.setScene(scene);
+//        window.show();
 
 
 
