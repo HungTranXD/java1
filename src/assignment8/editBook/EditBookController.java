@@ -1,4 +1,4 @@
-package assignment8.addBook;
+package assignment8.editBook;
 
 import assignment8.Book;
 import assignment8.Main;
@@ -15,10 +15,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class AddBookController implements Initializable {
+public class EditBookController implements Initializable {
     public TextField txtId;
     public TextField txtName;
     public TextField txtAuthor;
@@ -27,15 +26,17 @@ public class AddBookController implements Initializable {
     public TextField txtPrice;
     public TextField txtQuantity;
 
+    public static Book editedBook;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> publishers = FXCollections.observableArrayList();
         publishers.addAll(
                 "Penguin/Random House",
-                        "Hachette Book Group",
-                        "Harper Collins",
-                        "Simon and Schuster",
-                        "Macmillan"
+                "Hachette Book Group",
+                "Harper Collins",
+                "Simon and Schuster",
+                "Macmillan"
         );
         cbPublisher.setItems(publishers);
 
@@ -57,15 +58,23 @@ public class AddBookController implements Initializable {
                 "Health & Fitness",
                 "History"
         );
+
         cbType.setItems(type);
+        txtId.setText(editedBook.getId());
+        txtName.setText(editedBook.getName());
+        txtAuthor.setText(editedBook.getAuthor());
+        cbPublisher.setValue(editedBook.getPublisher());
+        cbType.setValue(editedBook.getType());
+        txtPrice.setText(Double.toString(editedBook.getPrice()));
+        txtQuantity.setText(Integer.toString(editedBook.getQuantity()));
     }
 
-    public void add(ActionEvent actionEvent){
+    public void edit(ActionEvent actionEvent) {
         try {
             String id = txtId.getText();
             if (id.equals("")) throw new Exception("You haven't fill out ID!");
             for (Book b: BookListController.bookList) {
-                if (b.getId().equals(id)) throw new Exception("ID already exists!");
+                if (!id.equals(editedBook.getId()) && b.getId().equals(id)) throw new Exception("ID already exists!");
             }
             String name = txtName.getText();
             if (name.equals("")) throw new Exception("You haven't fill out Name!");
@@ -80,7 +89,15 @@ public class AddBookController implements Initializable {
             int quantity = Integer.parseInt(txtQuantity.getText());
             if (quantity < 0) throw new Exception("Quantity can not be negative");
 
-            BookListController.bookList.add(new Book(id, name, author, publisher, type, price, quantity));
+            editedBook.setId(id);
+            editedBook.setName(name);
+            editedBook.setAuthor(author);
+            editedBook.setPublisher(publisher);
+            editedBook.setType(type);
+            editedBook.setPrice(price);
+            editedBook.setQuantity(quantity);
+
+            System.out.println(BookListController.bookList);
 
             goBackToList(actionEvent);
         } catch (Exception e) {
@@ -97,4 +114,5 @@ public class AddBookController implements Initializable {
         Main.rootStage.setTitle("Books management");
         Main.rootStage.setScene(new Scene(root, 800, 600));
     }
+
 }
