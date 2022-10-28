@@ -2,12 +2,15 @@ package assignment7.editStudent;
 
 import assignment7.Main;
 import assignment7.Student;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -18,12 +21,18 @@ public class EditStudentController implements Initializable {
     public TextField txtEmail;
     public TextField txtMark;
     public static Student editedStudent;
+    public ComboBox<String> cbGender;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         txtName.setText(editedStudent.getName());
         txtEmail.setText(editedStudent.getEmail());
         txtMark.setText(Integer.toString(editedStudent.getMark()));
+
+        ObservableList<String> genders = FXCollections.observableArrayList();
+        genders.addAll("Male", "Female", "Other");
+        cbGender.setItems(genders);
+        cbGender.setValue(editedStudent.getGender());
     }
 
     public void backToListPage(ActionEvent actionEvent) throws Exception{
@@ -40,10 +49,12 @@ public class EditStudentController implements Initializable {
             String email = txtEmail.getText();
             Integer mark = Integer.parseInt(txtMark.getText());
             if(mark < 0 || mark > 10) throw new Exception("Invalid mark");
+            String gender = cbGender.getValue();
 
             editedStudent.setName(name);
             editedStudent.setEmail(email);
             editedStudent.setMark(mark);
+            editedStudent.setGender(gender);
 
             backToListPage(null);
         } catch (Exception e) {

@@ -4,14 +4,16 @@ public class Student {
     private String name;
     private String email;
     private Integer mark;
+    private String gender;
 
     public Student() {
     }
 
-    public Student(String name, String email, Integer mark) {
+    public Student(String name, String email, Integer mark, String gender) {
         this.name = name;
         this.email = email;
         this.mark = mark;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -38,9 +40,16 @@ public class Student {
         this.mark = mark;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     @Override
     public String toString() {
-        return getName() + " - " + getEmail() + " - " + getMark();
+        return getName() + " - " + getEmail() + " - " + getMark() + " - " + getGender();
     }
 }

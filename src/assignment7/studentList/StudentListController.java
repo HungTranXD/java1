@@ -61,20 +61,31 @@ public class StudentListController implements Initializable {
         sortOrder = !sortOrder;
     }
 
-    public void edit(MouseEvent mouseEvent) throws Exception{
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Confirmation");
-        confirmAlert.setHeaderText("Are you sure you want to edit this student?");
+    public void edit(MouseEvent mouseEvent){
+        try {
+            if(studentLv.getSelectionModel().getSelectedItem() == null) {
+                throw new Exception("No student selected");
+            }
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation");
+            confirmAlert.setHeaderText("Are you sure you want to edit this student?");
 
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            EditStudentController.editedStudent = studentLv.getSelectionModel().getSelectedItem();
+            Optional<ButtonType> result = confirmAlert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                EditStudentController.editedStudent = studentLv.getSelectionModel().getSelectedItem();
 
-            Parent addStudentPage = FXMLLoader.load(getClass().getResource("../editStudent/editStudent.fxml"));
-            Scene sc = new Scene(addStudentPage, 400, 600);
-            Main.rootStage.setTitle("Add student");
-            Main.rootStage.setScene(sc);
+                Parent addStudentPage = FXMLLoader.load(getClass().getResource("../editStudent/editStudent.fxml"));
+                Scene sc = new Scene(addStudentPage, 400, 600);
+                Main.rootStage.setTitle("Add student");
+                Main.rootStage.setScene(sc);
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText(e.getMessage());
+            alert.show();
         }
+
     }
 
 }

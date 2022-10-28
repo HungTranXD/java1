@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:controller="assignment8.bookList.BookListController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="366.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book list">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ListView fx:id="lvBook" layoutX="14.0" layoutY="78.0" prefHeight="482.0" prefWidth="698.0" />
+      <Button layoutX="14.0" layoutY="47.0" mnemonicParsing="false" text="Sort by name" />
+      <Button layoutX="110.0" layoutY="47.0" mnemonicParsing="false" text="Sort by price" />
+      <Button layoutX="201.0" layoutY="47.0" mnemonicParsing="false" text="Sort by quantity" />
+      <Button onAction="#goToAdd" layoutX="718.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Add" />
+      <Button onAction="#goToEdit" layoutX="718.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Edit" />
+      <Button onAction="#delete" layoutX="718.0" layoutY="144.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Delete" />
+      <Text layoutX="321.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Select book to edit or delete)" />
+   </children>
+</Pane>

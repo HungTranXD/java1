@@ -33,10 +33,11 @@
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Button onAction="#submit" layoutX="168.0" layoutY="285.0" mnemonicParsing="false" text="Submit">
+        <Button layoutX="169.0" layoutY="334.0" mnemonicParsing="false" onAction="#submit" text="Submit">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
+        <ComboBox fx:id="cbGender" layoutX="50.0" layoutY="275.0" prefHeight="25.0" prefWidth="302.0" promptText="Gender" />
     </children>
 </Pane>
