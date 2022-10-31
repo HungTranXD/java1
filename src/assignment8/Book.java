@@ -1,5 +1,15 @@
 package assignment8;
 
+import assignment8.editBook.EditBookController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+
+import static assignment8.bookList.BookListController.bookList;
+
 public class Book {
     private String id;
     private String name;
@@ -8,6 +18,8 @@ public class Book {
     private String type;
     private double price;
     private int quantity;
+    private Button edit;
+    private Button delete;
 
     public Book() {
     }
@@ -20,6 +32,44 @@ public class Book {
         this.type = type;
         this.price = price;
         this.quantity = quantity;
+        this.edit = new Button("Edit");
+        this.edit.setStyle("-fx-background-color: #dcbf13; -fx-text-fill: #ffffff");
+        this.edit.setOnAction(event -> {
+        try {
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation");
+            confirmAlert.setHeaderText("Are you sure you want to edit this book info?");
+            if (confirmAlert.showAndWait().get() == ButtonType.OK) {
+                EditBookController.editedBook = this;
+
+                Parent root = FXMLLoader.load(getClass().getResource("editBook/editBook.fxml"));
+                Main.rootStage.setTitle("Edit book");
+                Main.rootStage.setScene(new Scene(root, 800, 600));
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText(e.getMessage());
+            alert.show();
+        }
+        });
+        this.delete = new Button("Delete");
+        this.delete.setStyle("-fx-background-color: #c92727; -fx-text-fill: #ffffff");
+        this.delete.setOnAction(event -> {
+        try {
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation");
+            confirmAlert.setHeaderText("Are you sure you want to delete this book?");
+            if (confirmAlert.showAndWait().get() == ButtonType.OK)
+                bookList.remove(this);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText(e.getMessage());
+            alert.show();
+        }
+        });
     }
 
     public String getId() {
@@ -76,6 +126,22 @@ public class Book {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Button getEdit() {
+        return edit;
+    }
+
+    public void setEdit(Button edit) {
+        this.edit = edit;
+    }
+
+    public Button getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Button delete) {
+        this.delete = delete;
     }
 
     @Override

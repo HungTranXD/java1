@@ -37,7 +37,7 @@ public class EditStudentController implements Initializable {
 
     public void backToListPage(ActionEvent actionEvent) throws Exception{
         Parent addStudentPage = FXMLLoader.load(getClass().getResource("../studentList/studentList.fxml"));
-        Scene sc = new Scene(addStudentPage, 400, 600);
+        Scene sc = new Scene(addStudentPage, 600, 600);
         Main.rootStage.setTitle("Student list");
         Main.rootStage.setScene(sc);
     }

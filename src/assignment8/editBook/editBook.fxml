@@ -19,7 +19,7 @@
       <ComboBox fx:id="cbType" layoutX="230.0" layoutY="279.0" prefHeight="25.0" prefWidth="381.0" promptText="Type" />
       <TextField fx:id="txtPrice" layoutX="230.0" layoutY="330.0" prefHeight="25.0" prefWidth="381.0" promptText="Price" />
       <TextField fx:id="txtQuantity" layoutX="230.0" layoutY="378.0" prefHeight="25.0" prefWidth="381.0" promptText="Quantity" />
-      <Button layoutX="340.0" layoutY="433.0" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #2D99B1;" text="Edit" textFill="WHITE" />
+      <Button layoutX="340.0" layoutY="433.0" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #dcbf13;" text="Edit" textFill="WHITE" />
       <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBackToList" style="-fx-background-color: #979797;" text="&lt; Back" textFill="WHITE" />
       <Text fill="#0000007e" layoutX="170.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher:" />
       <Text fill="#0000007e" layoutX="170.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
