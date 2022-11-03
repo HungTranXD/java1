@@ -9,12 +9,13 @@ public class ComplexDemo {
             System.out.println("a = " + a.toString());
             System.out.println("b = " + b.toString());
             //Calculation
+            System.out.println("------------------------------");
             System.out.println("a + b = " + a.add(b).toString());
             System.out.println("a - b = " + a.subtract(b).toString());
             System.out.println("a * b = " + a.multiply(b).toString());
             System.out.println("a / b = " + a.divide(b).toString());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }

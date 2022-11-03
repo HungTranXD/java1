@@ -52,8 +52,10 @@ public class Complex {
     }
 
     public Complex divide(Complex b) throws Exception{
-        if (b.getRealPart() == 0 && b.getImaginaryPart() == 0) throw new Exception("Divide by zero");
-        return new Complex( (this.getRealPart()*b.getRealPart() + this.getImaginaryPart()*b.getImaginaryPart()) / (b.getRealPart()*b.getRealPart() + b.getImaginaryPart()*b.getImaginaryPart()), (this.getImaginaryPart()*b.getRealPart() - this.getRealPart()*b.getImaginaryPart()) / (b.getRealPart()*b.getRealPart() + b.getImaginaryPart()*b.getImaginaryPart()));
+        if (b.getRealPart() == 0 && b.getImaginaryPart() == 0) throw new Exception("Divide by zero!");
+        return new Complex(
+                (this.getRealPart()*b.getRealPart() + this.getImaginaryPart()*b.getImaginaryPart()) / (b.getRealPart()*b.getRealPart() + b.getImaginaryPart()*b.getImaginaryPart()),
+                (this.getImaginaryPart()*b.getRealPart() - this.getRealPart()*b.getImaginaryPart()) / (b.getRealPart()*b.getRealPart() + b.getImaginaryPart()*b.getImaginaryPart()));
     }
 
     public String toString() {
