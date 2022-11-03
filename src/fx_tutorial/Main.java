@@ -2,9 +2,12 @@ package fx_tutorial;
 
 import com.sun.crypto.provider.HmacMD5KeyGenerator;
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -149,44 +152,44 @@ public class Main extends Application {
         /* ------------------------------------------------- */
         /* ------------------- Grid pane ------------------- */
         /* ------------------------------------------------- */
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(8);
-        grid.setHgap(10);
-
-        //Name label
-        Label nameLabel = new Label("Username:");
-        nameLabel.setId("bold-label");
-        GridPane.setConstraints(nameLabel, 0,0);
-
-        //Name input
-        TextField nameInput = new TextField("Bucky");
-        GridPane.setConstraints(nameInput,1,0);
-
-        //Password label
-        Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel, 0,1);
-
-        //Password input
-        TextField passInput = new TextField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput, 1, 1);
-
-        //Login button
-        Button loginButton = new Button("Log in");
-        GridPane.setConstraints(loginButton, 1, 2);
-
-        //Sign up button
-        Button signupButton = new Button("Sign up");
-        signupButton.getStyleClass().add("button-blue");
-        GridPane.setConstraints(signupButton,1,3);
-
-        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signupButton);
-
-        Scene scene = new Scene(grid, 300, 200);
-        scene.getStylesheets().add("viper.css");
-        window.setScene(scene);
-        window.show();
+//        GridPane grid = new GridPane();
+//        grid.setPadding(new Insets(10, 10, 10, 10));
+//        grid.setVgap(8);
+//        grid.setHgap(10);
+//
+//        //Name label
+//        Label nameLabel = new Label("Username:");
+//        nameLabel.setId("bold-label");
+//        GridPane.setConstraints(nameLabel, 0,0);
+//
+//        //Name input
+//        TextField nameInput = new TextField("Bucky");
+//        GridPane.setConstraints(nameInput,1,0);
+//
+//        //Password label
+//        Label passLabel = new Label("Password:");
+//        GridPane.setConstraints(passLabel, 0,1);
+//
+//        //Password input
+//        TextField passInput = new TextField();
+//        passInput.setPromptText("password");
+//        GridPane.setConstraints(passInput, 1, 1);
+//
+//        //Login button
+//        Button loginButton = new Button("Log in");
+//        GridPane.setConstraints(loginButton, 1, 2);
+//
+//        //Sign up button
+//        Button signupButton = new Button("Sign up");
+//        signupButton.getStyleClass().add("button-blue");
+//        GridPane.setConstraints(signupButton,1,3);
+//
+//        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signupButton);
+//
+//        Scene scene = new Scene(grid, 300, 200);
+//        scene.getStylesheets().add("viper.css");
+//        window.setScene(scene);
+//        window.show();
 
 
 
@@ -470,7 +473,59 @@ public class Main extends Application {
 
 
 
+        /* ------------------------------------------------- */
+        /* ------------------ Properties ------------------- */
+        /* ------------------------------------------------- */
+//        Person bucky = new Person();
+//        bucky.firstNameProperty().addListener( (v, oldValue, newValue) -> {
+//            System.out.println("Name change to " + newValue);
+//            System.out.println("firstNameProperty() " + bucky.firstNameProperty());
+//            System.out.println("getFirstName() " + bucky.getFirstName());
+//        });
+//
+//        button = new Button("Submit");
+//        button.setOnAction(event -> bucky.setFirstName("Porky"));
+//
+//        StackPane layout = new StackPane();
+//        layout.getChildren().add(button);
+//        Scene scene = new Scene(layout, 300, 250);
+//        window.setScene(scene);
+//        window.show();
 
+
+
+        /* ------------------------------------------------- */
+        /* -------------------- Binding -------------------- */
+        /* ------------------------------------------------- */
+        //Example 1:
+        IntegerProperty x = new SimpleIntegerProperty(3);
+        IntegerProperty y = new SimpleIntegerProperty();
+
+        y.bind(x.multiply(10));
+        System.out.println("x: " + x.getValue());
+        System.out.println("y: " + y.getValue() + "\n");
+
+        x.setValue(9);
+        System.out.println("x: " + x.getValue());
+        System.out.println("y: " + y.getValue() + "\n");
+
+        //Example 2:
+        //Input
+        TextField userInput = new TextField();
+        userInput.setMaxWidth(200);
+        Label firstLable = new Label("Welcome to the site ");
+        Label secondLable = new Label();
+
+        HBox bottomText = new HBox(firstLable, secondLable);
+        bottomText.setAlignment(Pos.CENTER);
+
+        secondLable.textProperty().bind(userInput.textProperty());
+
+        VBox layout = new VBox(10, userInput, bottomText);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
+        window.show();
 
     }
 
