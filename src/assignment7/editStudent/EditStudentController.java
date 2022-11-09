@@ -2,6 +2,7 @@ package assignment7.editStudent;
 
 import assignment7.Main;
 import assignment7.Student;
+import assignment7.studentList.StudentListController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class EditStudentController implements Initializable {
@@ -51,10 +55,17 @@ public class EditStudentController implements Initializable {
             if(mark < 0 || mark > 10) throw new Exception("Invalid mark");
             String gender = cbGender.getValue();
 
-            editedStudent.setName(name);
-            editedStudent.setEmail(email);
-            editedStudent.setMark(mark);
-            editedStudent.setGender(gender);
+//            editedStudent.setName(name);
+//            editedStudent.setEmail(email);
+//            editedStudent.setMark(mark);
+//            editedStudent.setGender(gender);
+
+            //Edit student to database
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(StudentListController.connectionString, StudentListController.user, StudentListController.pwd);
+            Statement stt = conn.createStatement();
+            String sql_txt = "UPDATE students SET name = '" + name + "', email = '" + email + "', mark = " + mark + ", gender = '" + gender + "' WHERE id = "  + editedStudent.getId();
+            stt.execute(sql_txt);
 
             backToListPage(null);
         } catch (Exception e) {

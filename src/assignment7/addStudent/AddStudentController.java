@@ -15,7 +15,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
+import java.sql.*;
 
 public class AddStudentController implements Initializable {
     public TextField txtName;
@@ -37,14 +39,14 @@ public class AddStudentController implements Initializable {
         Main.rootStage.setScene(sc);
     }
 
-    private void addStudent(String name, String email, Integer mark, String gender) throws Exception{
-        for (assignment7.Student s: StudentListController.studentList) {
-            if (s.getName().equals(name)) {
-                throw new Exception("Name already exists");
-            }
-        }
-        StudentListController.studentList.add(new Student(name, email, mark, gender));
-    }
+//    private void addStudent(String name, String email, Integer mark, String gender) throws Exception{
+//        for (assignment7.Student s: StudentListController.studentList) {
+//            if (s.getName().equals(name)) {
+//                throw new Exception("Name already exists");
+//            }
+//        }
+//        StudentListController.studentList.add(new Student(null, name, email, mark, gender));
+//    }
     public void submit(ActionEvent actionEvent) throws Exception{
         try {
             String name = txtName.getText();
@@ -53,10 +55,14 @@ public class AddStudentController implements Initializable {
             if(mark < 0 || mark > 10) throw new Exception("Invalid mark");
             String gender = cbGender.getValue();
 
-            addStudent(name, email, mark, gender);
-            txtName.clear();
-            txtEmail.clear();
-            txtMark.clear();
+//            addStudent(name, email, mark, gender);
+
+            //Add student to database
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(StudentListController.connectionString, StudentListController.user, StudentListController.pwd);
+            Statement stt = conn.createStatement();
+            String sql_txt = "INSERT INTO students(name, email, mark, gender) VALUES ('" + txtName.getText() + "','" + txtEmail.getText() + "','" + txtMark.getText() + "','" + cbGender.getValue() + "')" ;
+            stt.execute(sql_txt);
 
             backToListPage(null);
         } catch (Exception e) {

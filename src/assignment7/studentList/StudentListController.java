@@ -15,10 +15,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.sql.*;
 
 
 public class StudentListController implements Initializable {
@@ -32,7 +34,13 @@ public class StudentListController implements Initializable {
 
     private boolean sortOrder = true;
 
-    public static ObservableList<Student> studentList = FXCollections.observableArrayList();
+    public ObservableList<Student> studentList = FXCollections.observableArrayList();
+
+
+    public final static String connectionString = "jdbc:mysql://localhost:3306/t2204m-java1?useUnicode=yes&characterEncoding=UTF-8";
+    public final static String user = "root";
+    public final static String pwd = "";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,11 +50,33 @@ public class StudentListController implements Initializable {
         cGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
 
-        if(studentList.size() == 0) {
-            studentList.add(new Student("John", "john@gmail.com", 2, "male"));
-            studentList.add(new Student("Emma", "emma@gmail.com", 3, "female"));
+//        if(studentList.size() == 0) {
+//            studentList.add(new Student("John", "john@gmail.com", 2, "male"));
+//            studentList.add(new Student("Emma", "emma@gmail.com", 3, "female"));
+//        }
+
+        //Get data from database
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(connectionString, user, pwd);
+            Statement stt = conn.createStatement();
+            String sql_txt = "SELECT * FROM students";
+            ResultSet rs = stt.executeQuery(sql_txt);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                int mark = rs.getInt("mark");
+                String gender = rs.getString("gender");
+
+                Student s = new Student(id, name, email, mark, gender);
+                studentList.add(s);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         tbStudents.setItems(studentList);
+        System.out.println("Default CharacterSet is: "+ Charset.defaultCharset());
     }
 
     public void goToAddPage(ActionEvent actionEvent) throws Exception{
@@ -78,9 +108,9 @@ public class StudentListController implements Initializable {
 
     public void edit(MouseEvent mouseEvent){
         try {
-            if(tbStudents.getSelectionModel().getSelectedItem() == null) {
-                throw new Exception("No student selected");
-            }
+//            if(tbStudents.getSelectionModel().getSelectedItem() == null) {
+//                throw new Exception("No student selected");
+//            }
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirmation");
             confirmAlert.setHeaderText("Are you sure you want to edit this student?");
